@@ -77,6 +77,8 @@ jobs:
       with: 
         app-name: ${{ needs.deploy_infrastructure.outputs.appServiceName }} # Access to the previous job output to get the appServiceName deployed with bicep
         package: ./backend/ParkNDeploy.Api/publish # Path to the previously published app
+  
+  
   deploy_frontend:
     runs-on: ubuntu-latest
     needs: deploy_infrastructure
