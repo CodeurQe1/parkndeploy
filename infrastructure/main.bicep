@@ -1,6 +1,6 @@
 targetScope = 'resourceGroup' // We'll deploy the resources in the provided resource group
 
-// Parameters to easily construct resource names
+// Parameters to easily construct resource names 
 param location string
 param project string
 param swaLocation string // Static Web App locations are limited, we need to add another variable
