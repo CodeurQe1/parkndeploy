@@ -1,0 +1,42 @@
+name: CI for Pull Requests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build_backend:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup .NET SDK 9.0.x
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+        
+    - name: Publish the app
+      run: dotnet publish -c Release --property:PublishDir=publish # Publish the app to the API project publish folder
+      working-directory: ./backend # Specify where to find the solution file in repository
+
+    
+  
+  build_frontend:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Build the app
+      run: npm install && npm run build
+      working-directory: ./frontend    
+    
+    - name: run linting
+      run: npm run lint
+      working-directory: ./frontend
