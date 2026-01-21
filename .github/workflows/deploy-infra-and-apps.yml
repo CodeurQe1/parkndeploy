@@ -114,7 +114,9 @@ jobs:
     - name: get version tag
       run: |
         echo ${{ github.ref_name }}
-        jq '.version = ${{ github.ref_name }}' ./frontend/package.json
+        jq '.version = ${{ github.ref_name }}' package.json > tmp.json && tmp.json mv package.json
+        
+      working-directory: ./frontend 
 
     - name: Build the app
       run: npm install && npm run build
