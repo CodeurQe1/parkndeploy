@@ -67,7 +67,7 @@ jobs:
       working-directory: ./backend # Specify where to find the solution file in repository
 
     - name: Download Artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: artifact_backend
         path: backend/ParkNDeploy.Api/publish
@@ -83,7 +83,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: artifact_backend
         path: backend/ParkNDeploy.Api/publish
@@ -116,7 +116,7 @@ jobs:
       working-directory: ./frontend   
 
     - name: Download Artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: artifact_frontend 
         path: frontend/dist
@@ -132,7 +132,7 @@ jobs:
       uses: actions/checkout@v4 
     
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: artifact_frontend
         path: frontend/dist
