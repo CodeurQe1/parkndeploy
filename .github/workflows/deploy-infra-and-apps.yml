@@ -114,7 +114,7 @@ jobs:
     - name: get version tag
       run: |
         echo ${{ github.ref_name }}
-        jq '.version = "${{ github.ref_name }}"' package.json > tmp.json && tmp.json mv package.json
+        jq '.version = "${{ github.ref_name }}"' package.json > tmp.json && mv tmp.json package.json
         
       working-directory: ./frontend 
 
