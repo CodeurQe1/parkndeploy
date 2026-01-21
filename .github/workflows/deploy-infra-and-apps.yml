@@ -110,6 +110,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      
+    - name: get version tag
+      run: |
+        echo ${{ github.ref_name }}
+        jq '.version = ${{ github.ref_name }}' frontend/package.json
 
     - name: Build the app
       run: npm install && npm run build
