@@ -111,12 +111,17 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       
-    - name: get version tag
+    - name: get version tag and write into json file
       run: |
-        echo ${{ github.ref_name }}
         jq '.version = "${{ github.ref_name }}"' package.json > tmp.json && mv tmp.json package.json
-        
-      working-directory: ./frontend 
+      working-directory: ./frontend
+
+    - name: git commit and git push
+      run: |
+        git add *
+        git commit -m "update version"
+        git push $(git branch -r --contains ${{ github.ref }} --format "%(refname:lstrip=3)")
+      working-directory: ./frontend
 
     - name: Build the app
       run: npm install && npm run build
