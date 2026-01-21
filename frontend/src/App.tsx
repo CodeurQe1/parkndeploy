@@ -8,6 +8,7 @@ import { LoadingSpinner } from "@/components/ui/loadingspinner";
 import ParkingListFilters from "@/components/ParkingList/ParkingListFilters";
 import { useParkingSearchStore } from "@/stores/parkingSearchStore";
 
+
 function App() {
   const { parkingName } = useParkingSearchStore();
 
@@ -23,6 +24,9 @@ function App() {
       <h1 className="text-2xl font-bold text-center">
         Where can I Park in Angers ? 👀
       </h1>
+      <h2>
+        Version : {APP_VERSION}
+      </h2>
       <ParkingListFilters
         onChange={(parkingName: string) => {
           console.log(parkingName);
